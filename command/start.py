@@ -1,12 +1,11 @@
 from func.keybord import change, get
-from command.help import help
+from func.work_db import add_db
 
 
 async def start(update, context):
-    change(['/stop', '/help', '/info', '/play'])
+    change(['/stop', '/help', '/info', '/play', '/balance'])
     user = update.effective_user
-    chat_id = update.effective_message.chat_id
-    context.job_queue.run_once(help, 5, chat_id=chat_id, name=str(chat_id))
+    add_db(user.id)
     await update.message.reply_html(
         rf"Привет {user.mention_html()}!",
         reply_markup=get()
