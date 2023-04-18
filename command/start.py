@@ -3,7 +3,7 @@ from func.work_db import add_db
 
 
 async def start(update, context):
-    change(['/stop', '/help', '/info', '/play', '/balance'])
+    change(['/stop', '/help', '/menu', '/play', '/balance'])
     user = update.effective_user
     add_db(user.id)
     await update.message.reply_html(
