@@ -32,8 +32,8 @@ async def result_fts(update, context):
     if update.message.text.lower() not in ["огонь", "дерево", "камень"]:
         await update.message.reply_text("такого варианта не было, повторите ещё раз")
         return "2games_2"
-    bot_ans = randint(0, 3)
-    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода'])
+    bot_ans = randint(0, 2)
+    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки'])
     if bot_ans == 0:
         await update.message.reply_text("противник выбрал огонь")
     elif bot_ans == 1:
@@ -45,7 +45,7 @@ async def result_fts(update, context):
         await update.message.reply_text("у вас ничья", reply_markup=get())
     elif (bot_ans == 1 and update.message.text == "огонь") or (bot_ans == 2 and update.message.text == "дерево") or (
             bot_ans == 0 and update.message.text == "камень"):
-        choice_db(update.effective_user.id, stavka)
+        choice_db(update.effective_user.id, int(stavka * 0.75))
         await update.message.reply_text("поздравляем, ты победил!!", reply_markup=get())
     else:
         choice_db(update.effective_user.id, -stavka)

@@ -38,7 +38,7 @@ async def result(update, context):
         await update.message.reply_text("такого варианта не было, повторите ещё раз")
         return "1games_2"
     text = ""
-    rnd = randint(0, 3)
+    rnd = randint(0, 2)
     if rnd == 0:
         text += "выпала роза\n"
     elif rnd == 1:
@@ -51,6 +51,6 @@ async def result(update, context):
     else:
         text += "Ты проиграл"
         choice_db(update.effective_user.id, -stavka)
-    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода'])
+    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки'])
     await update.message.reply_text(text, reply_markup=get())
     return "play"
