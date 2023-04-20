@@ -12,11 +12,14 @@ async def fts(update, context):
 
 async def stake_fts(update, context):
     global stavka
+    if not update.message.text.isdigit():
+        await update.message.reply_text("введите корректное значение")
+        return "2games_1"
     if int(update.message.text) <= 0:
         await update.message.reply_text("введите корректное значение")
         return "2games_1"
     if int(update.message.text) > get_db(update.effective_user.id):
-        await update.message.reply_text("у вас не такого количества денег")
+        await update.message.reply_text("у вас не такого количества тугриков")
         return "2games_1"
     change(["огонь", "дерево", "камень"])
     await update.message.reply_text(
@@ -33,7 +36,8 @@ async def result_fts(update, context):
         await update.message.reply_text("такого варианта не было, повторите ещё раз")
         return "2games_2"
     bot_ans = randint(0, 2)
-    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки'])
+    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
+            'игра годовые кольца'])
     if bot_ans == 0:
         await update.message.reply_text("противник выбрал огонь")
     elif bot_ans == 1:

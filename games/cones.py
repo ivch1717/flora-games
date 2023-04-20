@@ -13,11 +13,14 @@ async def cones(update, context):
 
 async def stake_cones(update, context):
     global stavka, cnt
+    if not update.message.text.isdigit():
+        await update.message.reply_text("введите корректное значение")
+        return "3games_1"
     if int(update.message.text) <= 0:
         await update.message.reply_text("введите корректное значение")
         return "3games_1"
     if int(update.message.text) > get_db(update.effective_user.id):
-        await update.message.reply_text("у вас не такого количества денег")
+        await update.message.reply_text("у вас не такого количества тугриков")
         return "3games_1"
     cnt = randint(2, 20)
     change(["играть ещё", "закончить игру"])
@@ -45,13 +48,17 @@ async def take_cones(update, context):
 
 async def red_cones(update, context):
     global cnt
+    if not update.message.text.isdigit():
+        await update.message.reply_text("такого варианта не было, повторите ещё раз")
+        return "3games_3"
     if 1 <= int(update.message.text) <= 10:
         cnt += int(update.message.text)
         change(["играть ещё", "закончить игру"])
         await update.message.reply_text(f"вам выпало {update.message.text} шишек, у вас сейчас {cnt} шишек",
                                         reply_markup=get())
         if cnt > 23:
-            change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки'])
+            change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
+                    'игра годовые кольца'])
             await update.message.reply_text("ты проиграл", reply_markup=get())
             return "play"
 
@@ -63,7 +70,8 @@ async def red_cones(update, context):
 
 async def result_cones(update, context):
     global cnt, stavka
-    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки'])
+    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
+            'игра годовые кольца'])
     await update.message.reply_text(f"ты получил {max(0, int(stavka * ((cnt - 17) / 2)))} тугриков", reply_markup=get())
     choice_db(update.effective_user.id, max(0, int(stavka * ((cnt - 17) / 2))))
 
@@ -75,7 +83,8 @@ async def filter_cones(update, context):
         if x == 11:
             return "3games_3"
         if cnt > 23:
-            change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки'])
+            change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
+                    'игра годовые кольца'])
             await update.message.reply_text("ты проиграл", reply_markup=get())
             return "play"
         return "3games_2"

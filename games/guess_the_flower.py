@@ -13,12 +13,15 @@ async def guess_the_flower(update, context):
 
 async def choice(update, context):
     global stavka
+    if not update.message.text.isdigit():
+        await update.message.reply_text("введите корректное значение")
+        return "1games_1"
     if int(update.message.text) <= 0:
         await update.message.reply_text("введите корректное значение")
-        return "2games_1"
+        return "1games_1"
     if int(update.message.text) > get_db(update.effective_user.id):
-        await update.message.reply_text("у вас не такого количества денег")
-        return "2games_1"
+        await update.message.reply_text("у вас не такого количества тугриков")
+        return "1games_1"
     change(["роза", "гвоздика"])
     await update.message.reply_text(
         "выберите на какой цветок вы делаете ставку: на розу или гвоздику, в случае если выпала трава, "
@@ -51,6 +54,7 @@ async def result(update, context):
     else:
         text += "Ты проиграл"
         choice_db(update.effective_user.id, -stavka)
-    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки'])
+    change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
+            'игра годовые кольца'])
     await update.message.reply_text(text, reply_markup=get())
     return "play"
