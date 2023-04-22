@@ -20,38 +20,39 @@ def add_set():
 async def result_cones(update, context):
     global cnt_set
     if cnt_set > 0:
+        cnt_set -= 1
         await update.message.reply_text(f'мы открыли бесплатный набор семян который у вас был,'
                                         f'наборов семян осталось: {cnt_set}')
+    elif get_db(update.effective_user.id) < 100:
+        await update.message.reply_text('один набор семян стоит 100 тугриков, у вас нет таких денег')
+        return
     else:
-        if get_db(update.effective_user.id) < 100:
-            await update.message.reply_text('один набор семян стоит 100 тугриков, у вас нет таких денег')
-        else:
-            choice_db(update.effective_user.id, -100)
-            x = randint(1, 100)
-            if x <= 50:
-                i = randint(0, 8)
-                await context.bot.send_photo(chat_id=update.effective_user.id,
-                                             photo=open(f"resourse/seed/grass/{grass[i][0]}",
-                                                        'rb'))
-                choice_db(update.effective_user.id, grass[i][1])
-                await update.message.reply_text(f"вы получаете: {grass[i][1]}")
-            elif x <= 80:
-                i = randint(0, 10)
-                await context.bot.send_photo(chat_id=update.effective_user.id,
-                                             photo=open(f"resourse/seed/trees/{tre[i][0]}",
-                                                        'rb'))
-                choice_db(update.effective_user.id, tre[i][1])
-                await update.message.reply_text(f"вы получаете: {tre[i][1]}")
-            elif x <= 95:
-                i = randint(0, 8)
-                await context.bot.send_photo(chat_id=update.effective_user.id,
-                                             photo=open(f"resourse/seed/flowers/{flowers[i][0]}", 'rb'))
-                choice_db(update.effective_user.id, flowers[i][1])
-                await update.message.reply_text(f"вы получаете: {flowers[i][1]}")
-            else:
-                i = randint(0, 3)
-                await context.bot.send_photo(chat_id=update.effective_user.id,
-                                             photo=open(f"resourse/seed/legendary_plants/{legendary_plants[i][0]}",
-                                                        'rb'))
-                choice_db(update.effective_user.id, legendary_plants[i][1])
-                await update.message.reply_text(f"вы получаете: {legendary_plants[i][1]}")
+        choice_db(update.effective_user.id, -100)
+    x = randint(1, 100)
+    if x <= 50:
+        i = randint(0, 8)
+        await context.bot.send_photo(chat_id=update.effective_user.id,
+                                     photo=open(f"resourse/seed/grass/{grass[i][0]}",
+                                                'rb'))
+        choice_db(update.effective_user.id, grass[i][1])
+        await update.message.reply_text(f"вы получаете: {grass[i][1]}")
+    elif x <= 80:
+        i = randint(0, 10)
+        await context.bot.send_photo(chat_id=update.effective_user.id,
+                                     photo=open(f"resourse/seed/trees/{tre[i][0]}",
+                                                'rb'))
+        choice_db(update.effective_user.id, tre[i][1])
+        await update.message.reply_text(f"вы получаете: {tre[i][1]}")
+    elif x <= 95:
+        i = randint(0, 8)
+        await context.bot.send_photo(chat_id=update.effective_user.id,
+                                     photo=open(f"resourse/seed/flowers/{flowers[i][0]}", 'rb'))
+        choice_db(update.effective_user.id, flowers[i][1])
+        await update.message.reply_text(f"вы получаете: {flowers[i][1]}")
+    else:
+        i = randint(0, 3)
+        await context.bot.send_photo(chat_id=update.effective_user.id,
+                                     photo=open(f"resourse/seed/legendary_plants/{legendary_plants[i][0]}",
+                                                'rb'))
+        choice_db(update.effective_user.id, legendary_plants[i][1])
+        await update.message.reply_text(f"вы получаете: {legendary_plants[i][1]}")
