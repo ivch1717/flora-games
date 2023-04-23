@@ -71,6 +71,6 @@ async def result_tree_ring(update, context):
         if i in ans:
             win += 1
     change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
-            'игра годовые кольца'])
+            'игра годовые кольца', 'посадка дерева'])
     await update.message.reply_text(f"ты угадал {win} раз, ты выиграл {int(stavka * win)} тугриков")
     choice_db(update.effective_user.id, int(stavka * win / 2))

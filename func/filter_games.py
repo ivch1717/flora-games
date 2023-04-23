@@ -3,6 +3,7 @@ from games.fire_tree_stone import fts
 from games.cones import cones
 from games.tree_ring import tre_ring
 from games.seed_set import result_cones
+from games.plant_tree import plant
 
 
 async def filter(update, context):
@@ -21,3 +22,6 @@ async def filter(update, context):
     if update.message.text.lower() == 'открыть набор семян':
         await result_cones(update, context)
         return "play"
+    if update.message.text.lower() == 'посадка дерева':
+        await plant(update, context)
+        return "5games_1"

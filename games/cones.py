@@ -58,7 +58,7 @@ async def red_cones(update, context):
                                         reply_markup=get())
         if cnt > 23:
             change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
-                    'игра годовые кольца'])
+                    'игра годовые кольца', 'посадка дерева'])
             await update.message.reply_text("ты проиграл", reply_markup=get())
             return "play"
 
@@ -71,7 +71,7 @@ async def red_cones(update, context):
 async def result_cones(update, context):
     global cnt, stavka
     change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
-            'игра годовые кольца'])
+            'игра годовые кольца', 'посадка дерева'])
     await update.message.reply_text(f"ты получил {max(0, int(stavka * ((cnt - 17) / 2)))} тугриков", reply_markup=get())
     choice_db(update.effective_user.id, max(0, int(stavka * ((cnt - 17) / 2))))
 
@@ -84,7 +84,7 @@ async def filter_cones(update, context):
             return "3games_3"
         if cnt > 23:
             change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
-                    'игра годовые кольца'])
+                    'игра годовые кольца', 'посадка дерева'])
             await update.message.reply_text("ты проиграл", reply_markup=get())
             return "play"
         return "3games_2"

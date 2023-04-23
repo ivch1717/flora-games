@@ -1,4 +1,3 @@
-from func.keybord import change, get
 from random import randint
 from func.work_db import choice_db, get_db
 

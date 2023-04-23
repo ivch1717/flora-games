@@ -55,6 +55,6 @@ async def result(update, context):
         text += "Ты проиграл"
         choice_db(update.effective_user.id, -stavka)
     change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
-            'игра годовые кольца'])
+            'игра годовые кольца', 'посадка дерева'])
     await update.message.reply_text(text, reply_markup=get())
     return "play"

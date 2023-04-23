@@ -8,7 +8,7 @@ from games.guess_the_flower import choice, result
 from games.fire_tree_stone import result_fts, stake_fts
 from games.cones import filter_cones, stake_cones, red_cones
 from games.tree_ring import stake_tree_ring, pick_ring
-
+from games.plant_tree import begin_life, life
 
 conv_handler = ConversationHandler(
     entry_points=[CommandHandler('start', start)],
@@ -24,6 +24,8 @@ conv_handler = ConversationHandler(
         "3games_3": [MessageHandler(filters.TEXT & ~filters.COMMAND, red_cones)],
         "4games_1": [MessageHandler(filters.TEXT & ~filters.COMMAND, stake_tree_ring), CommandHandler("menu", menu)],
         "4games_2": [MessageHandler(filters.TEXT & ~filters.COMMAND, pick_ring)],
+        "5games_1": [MessageHandler(filters.TEXT & ~filters.COMMAND, begin_life), CommandHandler("menu", menu)],
+        "5games_2": [MessageHandler(filters.TEXT & ~filters.COMMAND, life)],
     },
     fallbacks=[CommandHandler('stop', stop)]
 )

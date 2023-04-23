@@ -37,7 +37,7 @@ async def result_fts(update, context):
         return "2games_2"
     bot_ans = randint(0, 2)
     change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
-            'игра годовые кольца'])
+            'игра годовые кольца', 'посадка дерева'])
     if bot_ans == 0:
         await update.message.reply_text("противник выбрал огонь")
     elif bot_ans == 1:
