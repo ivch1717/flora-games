@@ -5,7 +5,7 @@ cnt_set = 0
 legendary_plants = [["lega1.png", 1000], ["lega2.png", 950], ["lega3.png", 900], ["lega4.png", 800]]
 flowers = [["f1.jpg", 350], ["f2.png", 300], ["f3.jpg", 250], ["f4.png", 400], ["f5.png", 350], ["f6.png", 500],
            ["f7.png", 300], ["f8.png", 450], ["f9.png", 400]]
-tre = [["t1.png", 80], ["t2.png", 75], ["t3.png", 85], ["t4.png", 105], ["t5.png", 90], ["t6.png", 95],
+tre = [["t1.jpg", 80], ["t2.png", 75], ["t3.png", 85], ["t4.png", 105], ["t5.png", 90], ["t6.png", 95],
        ["t7.png", 200], ["t8.png", 100], ["t9.png", 90], ["t10.png", 140], ["t11.png", 120]]
 grass = [["g1.png", 20], ["g2.png", 10], ["g3.png", 25], ["g4.png", 5], ["g5.png", 2], ["g6.png", 8],
          ["g7.png", 15], ["g8.png", 30], ["g9.png", 50]]
