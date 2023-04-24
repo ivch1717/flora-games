@@ -63,7 +63,7 @@ async def pick_ring(update, context):
 
 
 async def result_tree_ring(update, context):
-    global ans, massiv_selection
+    global ans, massiv_selection, step
     await update.message.reply_text(f"года, в которые грибы росли под деревом: {ans[0]}, {ans[1]}, {ans[2]}, {ans[3]}, "
                                     f"{ans[4]}, {ans[5]}")
     win = 0
@@ -72,5 +72,8 @@ async def result_tree_ring(update, context):
             win += 1
     change(['игра угадай цветок', 'открыть набор семян', 'игра огонь дерево вода', 'игра набери 23 шишки',
             'игра годовые кольца', 'посадка дерева'])
-    await update.message.reply_text(f"ты угадал {win} раз, ты выиграл {int(stavka * win)} тугриков")
-    choice_db(update.effective_user.id, int(stavka * win / 2))
+    await update.message.reply_text(f"ты угадал {win} раз, ты выиграл {int(stavka * win)} тугриков", reply_markup=get())
+    choice_db(update.effective_user.id, int(stavka * win))
+    massiv_selection = []
+    step = 2
+    ans = []
